@@ -4,3 +4,6 @@ target/
 *.iml
 mvnw
 mvnw.cmd
+.settings/
+.project
+.classpath
