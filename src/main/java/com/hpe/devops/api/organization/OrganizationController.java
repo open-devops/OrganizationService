@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@CrossOrigin
 @RequestMapping(value = "/organizations", produces = { "application/json" })
 public class OrganizationController {
 
@@ -54,10 +53,12 @@ public class OrganizationController {
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	public ResponseEntity<String> deleteOrganization(@PathVariable String id) throws Exception {
-//		Organization org = organizationRepo.findById(id);
+	public ResponseEntity<Organization> deleteOrganization(@PathVariable String id) throws Exception {
+		
+		Organization org = organizationRepo.findOne(id);
+		
 		organizationRepo.delete(id);
 		
-		return new ResponseEntity<String>("Deleted", HttpStatus.OK);
+		return new ResponseEntity<Organization>(org, HttpStatus.OK);
 	}
 }
