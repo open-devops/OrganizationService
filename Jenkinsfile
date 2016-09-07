@@ -15,5 +15,7 @@ node {
     stage 'Package'
     sh "mvn package"
     step([$class: 'ArtifactArchiver', artifacts: 'target/*.jar'])
-
+    
+    stage 'Build Image'
+    sh "mvn docker:build"
 }
