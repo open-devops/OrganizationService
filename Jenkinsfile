@@ -1,6 +1,10 @@
 #!groovy
 
 node {
+    stage 'Prepare'
+    properties([parameters([string(name: 'BRANCH', defaultValue: 'master')])])
+    echo params.BRANCH
+    
     stage 'Checkout'
     git url: 'https://github.com/open-devops/OrganizationService.git'
 
